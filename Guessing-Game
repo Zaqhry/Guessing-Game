@@ -1,0 +1,42 @@
+
+# A game where the user, gets 5 tries to try and guess a list of 5 randomly generated numbers and at the end it shows their results. 
+
+import time
+ 
+import random 
+
+random.seed(1)
+
+# Create randomly generated list of 5 numbers 
+
+lst = random.sample(range(1,21),5)
+
+correct_lst = []
+
+wrong_lst = []
+
+# Create a for loop that loops over each number and asks for the user's input and if it matches print correct, otherwise, have them try again. 
+
+tries = 1
+while tries < 6: 
+    print(f'Guess Number {tries}')
+    ui = int(input('enter a number: '))
+    if (ui in correct_lst) or (ui in wrong_lst):
+      print('You\'ve already guessed this, guess again!')
+    elif ui in lst: 
+       correct_lst.append(ui)
+       tries += 1
+    else:
+       wrong_lst.append(ui)
+       tries += 1
+      
+# Return their results 
+
+print('\n')
+
+print(f'Correct Guesses:{correct_lst}\n\nWrong Guesses:{wrong_lst}\n')
+print('Waiting...\n')
+time.sleep(1)
+print(f'Answer:{lst}\n')
+time.sleep(1)
+print(f'{len(correct_lst)}/{len(lst)} = {(len(correct_lst)/len(lst))*100}%\n')
